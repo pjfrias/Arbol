@@ -1,11 +1,29 @@
 
 package test;
 
+import java.util.Scanner;
+
 public class Test {
     public static void main(String[] args) {
-        Equipo[] equipos = new Equipo[8];
-        for (int i = 0; i < 8; i++) {
-            equipos[i] = new Equipo("Equipo " + (i + 1));
+        int cantidadEquipos = 0;
+        Scanner ingresoTeclado = new Scanner(System.in);
+        
+        System.out.println("==== BIENVENIDOS AL TORNEO DE BALONCESTO ====");
+        System.out.print("Ingrese la cantidad de quipos participantes --> ");
+        try{
+            cantidadEquipos = ingresoTeclado.nextInt();
+        }catch (Exception e){
+            System.out.println("Valor mal ingresado, por favor indique un valor entero.");
+            e.printStackTrace();
+        }
+        
+        ingresoTeclado.nextLine();
+        Equipo[] equipos = new Equipo[cantidadEquipos];
+        
+        for (int i = 0; i < cantidadEquipos; i++) {
+            System.out.print("Nombre del "+(i+1)+" ° esquipo --> ");
+            
+            equipos[i] = new Equipo(ingresoTeclado.next());
         }
 
         ArbolTernario arbol = new ArbolTernario();

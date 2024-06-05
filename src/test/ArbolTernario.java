@@ -41,7 +41,7 @@ class ArbolTernario {
 
     public void imprimirArbol(Nodo nodo, int nivel) {
         if (nodo != null) {
-            System.out.println(" ".repeat(nivel * 4) + "Equipo: " + (nodo.getEquipo() != null ? nodo.getEquipo().getNombre() : "N/A"));
+            System.out.println(repeat(" ", nivel * 4) + "Equipo: " + (nodo.getEquipo() != null ? nodo.getEquipo().getNombre() : "N/A"));
             imprimirArbol(nodo.getGanadores(), nivel + 1);
             imprimirArbol(nodo.getSegundasOportunidades(), nivel + 1);
             imprimirArbol(nodo.getEliminacion(), nivel + 1);
@@ -50,5 +50,16 @@ class ArbolTernario {
 
     public Nodo getRaiz() {
         return raiz;
+    }
+    
+    public static String repeat(String str, int times) {
+        if (str == null || times < 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < times; i++) {
+            sb.append(str);
+        }
+        return sb.toString();
     }
 }
