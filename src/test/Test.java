@@ -66,11 +66,14 @@ public class Test {
                 // ENFRENTAMIENTOS DENTRO DE LA RAMA GANADORES
                 jugarRonda(i, equiposGanadores);
             }
-            //RONDA DE RECUPERACION (SOLO PARTICIPAN QUIENES ESTAN EN SEGUNDA OPORTUNIDAD)
-            jugarRonda(-1, equiposSegundos);
-            //RONDAS ELIMINATORIAS HASTA BUSCAR AL CAMPEON
-            jugarRonda(-2, equiposGanadores);
         }
+        
+        //RONDA DE RECUPERACION (SOLO PARTICIPAN QUIENES ESTAN EN SEGUNDA OPORTUNIDAD)
+        jugarRonda(-1, equiposSegundos);
+        
+        //RONDAS ELIMINATORIAS HASTA BUSCAR AL CAMPEON
+        jugarRonda(-2, equiposGanadores);
+        
     }
 
     public static void jugarRonda(int i, LinkedList<Equipo> equipos) {
@@ -88,47 +91,7 @@ public class Test {
                     System.out.println("==== INGRESO DE RESULTADOS DE LA " + (i + 1) + "° RONDA ====");
 
                     break;
-                case 1:
 
-                    System.out.println("==== DAMOS INICIO A LA " + (i + 1) + "° RONDA (CATEGORIA 2° OPORTUNIDAD) ====");
-
-                    System.out.println("Proceda al partido entre el equipo " + equipoA.getNombre().toUpperCase() + " y el equipo " + equipoB.getNombre().toUpperCase());
-
-                    System.out.println("==== INGRESO DE RESULTADOS DE LA " + (i + 1) + "° RONDA (CATEGORIA 2° OPORTUNIDAD) ====");
-
-                    System.out.print("Ingrese puntaje del equipo " + equipoA.getNombre() + " --> ");
-                    int puntajeA = ingresoTeclado.nextInt();
-                    System.out.print("Ingrese puntaje del equipo " + equipoB.getNombre() + " --> ");
-                    int puntajeB = ingresoTeclado.nextInt();
-                    resultados.add(new Resultado(equipoA, equipoB, puntajeA, puntajeB));
-
-                    System.out.println("==== DAMOS INICIO A LA " + (i + 1) + "° RONDA (CATEGORIA GANADORES) ====");
-
-                    System.out.println("Proceda al partido entre el equipo " + equipoA.getNombre().toUpperCase() + " y el equipo " + equipoB.getNombre().toUpperCase());
-
-                    System.out.println("==== INGRESO DE RESULTADOS DE LA " + (i + 1) + "° RONDA (CATEGORIA GANADORES) ====");
-
-                    System.out.print("Ingrese puntaje del equipo " + equipoA.getNombre() + " --> ");
-                    int puntajej = ingresoTeclado.nextInt();
-                    System.out.print("Ingrese puntaje del equipo " + equipoB.getNombre() + " --> ");
-                    int puntajee = ingresoTeclado.nextInt();
-                    resultados.add(new Resultado(equipoA, equipoB, puntajeA, puntajeB));
-
-                    for (Resultado resultado : resultados) {
-                        arbolesRondas[i] = new ArbolRondas();
-                        arbolesRondas[i].agregarGanador(resultado.getGanador());
-                        equiposGanadores.add(resultado.getGanador());
-                        arbolesRondas[i].agregarSegundaOportunidad(resultado.getPerdedor());
-                        equiposSegundos.add(resultado.getPerdedor());
-                    }
-                    System.out.println("===== ARBOL DE GANADORES " + (i + 1) + " ° RONDA =====");
-                    arbolesRondas[i].verGanadores();
-                    System.out.println("===== ARBOL DE SEGUNDAS OPORTUNIDADES " + (i + 1) + " ° RONDA =====");
-                    arbolesRondas[i].verSegundos();
-                    System.out.println("===== ARBOL DE ELIMIDADOS " + (i + 1) + " ° RONDA =====");
-                    arbolesRondas[i].verEliminados();
-
-                    break;
                 case -1:
                     System.out.println("==== DAMOS INICIO A LA RONDA DE RECUPERACION ====");
 
@@ -137,7 +100,9 @@ public class Test {
                     System.out.println("==== INGRESO DE RESULTADOS DE LA RONDA DE RECUPERACION ====");
 
                     break;
+                    
                 case -2:
+                    
                     System.out.println("==== DAMOS INICIO A LAS RONDAS DE CAMPEONES ====");
                     int rondas = equiposGanadores.size() / 2;
 
@@ -173,6 +138,34 @@ public class Test {
                     System.out.println("===== ARBOL DE ELIMIDADOS DE LA RONDA DE RECUPERACION ====");
                     arbolesRondas[i - 1].verEliminados();
                     break;
+                    
+                default:
+
+                    System.out.println("==== DAMOS INICIO A LA " + (i + 1) + "° RONDA (CATEGORIA 2° OPORTUNIDAD) ====");
+
+                    System.out.println("Proceda al partido entre el equipo " + equipoA.getNombre().toUpperCase() + " y el equipo " + equipoB.getNombre().toUpperCase());
+
+                    System.out.println("==== INGRESO DE RESULTADOS DE LA " + (i + 1) + "° RONDA (CATEGORIA 2° OPORTUNIDAD) ====");
+
+                    System.out.print("Ingrese puntaje del equipo " + equipoA.getNombre() + " --> ");
+                    int puntajeA = ingresoTeclado.nextInt();
+                    System.out.print("Ingrese puntaje del equipo " + equipoB.getNombre() + " --> ");
+                    int puntajeB = ingresoTeclado.nextInt();
+                    resultados.add(new Resultado(equipoA, equipoB, puntajeA, puntajeB));
+
+                    System.out.println("==== DAMOS INICIO A LA " + (i + 1) + "° RONDA (CATEGORIA GANADORES) ====");
+
+                    System.out.println("Proceda al partido entre el equipo " + equipoA.getNombre().toUpperCase() + " y el equipo " + equipoB.getNombre().toUpperCase());
+
+                    System.out.println("==== INGRESO DE RESULTADOS DE LA " + (i + 1) + "° RONDA (CATEGORIA GANADORES) ====");
+
+                    System.out.print("Ingrese puntaje del equipo " + equipoA.getNombre() + " --> ");
+                    int puntajej = ingresoTeclado.nextInt();
+                    System.out.print("Ingrese puntaje del equipo " + equipoB.getNombre() + " --> ");
+                    int puntajee = ingresoTeclado.nextInt();
+                    resultados.add(new Resultado(equipoA, equipoB, puntajeA, puntajeB));
+
+                    
             }
             
         }
@@ -206,6 +199,21 @@ public class Test {
                 System.out.println("===== ARBOL DE ELIMIDADOS DE LA RONDA DE RECUPERACION ====");
                 arbolesRondas[i].verEliminados();
                 break;
+                
+            default:
+                for (Resultado resultado : resultados) {
+                        arbolesRondas[i] = new ArbolRondas();
+                        arbolesRondas[i].agregarGanador(resultado.getGanador());
+                        equiposGanadores.add(resultado.getGanador());
+                        arbolesRondas[i].agregarSegundaOportunidad(resultado.getPerdedor());
+                        equiposSegundos.add(resultado.getPerdedor());
+                    }
+                    System.out.println("===== ARBOL DE GANADORES " + (i + 1) + " ° RONDA =====");
+                    arbolesRondas[i].verGanadores();
+                    System.out.println("===== ARBOL DE SEGUNDAS OPORTUNIDADES " + (i + 1) + " ° RONDA =====");
+                    arbolesRondas[i].verSegundos();
+                    System.out.println("===== ARBOL DE ELIMIDADOS " + (i + 1) + " ° RONDA =====");
+                    arbolesRondas[i].verEliminados();
         }
         resultados.clear();
     }
