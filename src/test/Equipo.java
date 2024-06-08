@@ -5,7 +5,7 @@ class Equipo {
     private String nombre;
     private int cantVictorias;
     private int cantDerrotas;
-    private int puntaje;
+    private int puntaje=0;
 
     public Equipo(String nombre) {
         this.nombre = nombre;
@@ -39,8 +39,20 @@ class Equipo {
         return puntaje;
     }
 
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
+    public void setPuntaje() {
+        puntaje++;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Equipo{");
+        sb.append("nombre=").append(nombre);
+        sb.append(", cantVictorias=").append(cantVictorias);
+        sb.append(", cantDerrotas=").append(cantDerrotas);
+        sb.append(", puntaje=").append(puntaje);
+        sb.append('}');
+        return sb.toString();
     }
 
     

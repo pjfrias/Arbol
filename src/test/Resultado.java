@@ -16,6 +16,11 @@ class Resultado {
     }
 
     public Equipo getGanador() {
+       if (puntaje1 > puntaje2){
+           equipo1.setPuntaje();
+       }else{
+           equipo2.setPuntaje();
+       }        
         return puntaje1 > puntaje2 ? equipo1 : equipo2;
     }
 

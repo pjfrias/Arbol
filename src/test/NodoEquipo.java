@@ -50,6 +50,11 @@ public class NodoEquipo {
     public void setDerecha(NodoEquipo derecha) {
         this.derecha = derecha;
     }
+
+    @Override
+    public String toString() {
+        return "NodoEquipo{" + "equipo=" + equipo + '}';
+    }
     
     
     

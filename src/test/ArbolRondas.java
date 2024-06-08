@@ -5,35 +5,17 @@ public class ArbolRondas {
     private NodoEquipo ganadores;
     private NodoEquipo segundos;
     private NodoEquipo eliminados;
+    
 
     public ArbolRondas() {
-        this.raiz = new NodoEquipo();
-        this.ganadores = new NodoEquipo();
-        this.segundos = new NodoEquipo();
-        this.eliminados = new NodoEquipo();
-        this.raiz.setDerecha(ganadores);
-        this.raiz.setCentral(segundos);
-        this.raiz.setIzquierda(eliminados);
+       this.raiz = null; 
+        this.ganadores = null; 
+        this.segundos = null; 
+        this.eliminados = null;
     }
     
     public void agregarGanador(Equipo ganador){
         ganadores = insertarNodo(ganadores, ganador);
-    }
-    
-    private NodoEquipo insertarNodo(NodoEquipo nodo, Equipo equipo){
-        
-        if(nodo == null)
-            return new NodoEquipo(equipo);
-        
-        if(equipo.getPuntaje() > nodo.getEquipo().getPuntaje())
-            
-            nodo.setIzquierda(insertarNodo(nodo.getIzquierda(), equipo));
-        
-        else if(equipo.getPuntaje() == nodo.getEquipo().getPuntaje())
-            
-            nodo.setDerecha(insertarNodo(nodo.getDerecha(), equipo));
-        //No va a llegar nunca aca pero lo pongo para que compile
-        return nodo;
     }
     
     public void agregarSegundaOportunidad(Equipo segundo){
@@ -44,16 +26,31 @@ public class ArbolRondas {
         eliminados = insertarNodo(eliminados, eliminado);
     }
     
+    private NodoEquipo insertarNodo(NodoEquipo nodo, Equipo equipo){
+        
+        if(nodo == null)
+            return new NodoEquipo(equipo);
+        
+        if (equipo.getPuntaje() > nodo.getEquipo().getPuntaje()) {
+            nodo.setIzquierda(insertarNodo(nodo.getIzquierda(), equipo));
+        } else if (equipo.getPuntaje() < nodo.getEquipo().getPuntaje()) {
+            nodo.setDerecha(insertarNodo(nodo.getDerecha(), equipo));
+        } else {
+            nodo.setCentral(insertarNodo(nodo.getCentral(), equipo));
+        }
+        return nodo;
+    }    
+    
     public void verGanadores(){
         imprimirArbol(ganadores, 0);
     }
     
     public void verSegundos(){
-        imprimirArbol(ganadores, 0);
+        imprimirArbol(segundos, 0);
     }
     
     public void verEliminados(){
-        imprimirArbol(ganadores, 0);
+        imprimirArbol(eliminados, 0);
     }
     
     private void imprimirArbol(NodoEquipo nodo, int nivel) {
